@@ -2,21 +2,6 @@
 ###### \java\seedu\address\logic\commands\AddCommand.java
 ``` java
     @Override
-    public CommandResult executeUndoableCommand() throws CommandException {
-        requireNonNull(model);
-        try {
-            newTags = model.extractNewTag(toAdd);
-            model.addPerson(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        } catch (DuplicatePersonException e) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
-    }
-```
-###### \java\seedu\address\logic\commands\AddCommand.java
-``` java
-    @Override
     protected void undo() {
         requireNonNull(model);
         try {
@@ -542,18 +527,7 @@ public abstract class UndoableCommand extends Command {
             return new FindCommandParser().parse(arguments);
 
 ```
-###### \java\seedu\address\logic\parser\ArgumentMultimap.java
-``` java
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     * Refactoring this method into this class, because multiple classes use this method
-     */
-    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-}
-```
+
 ###### \java\seedu\address\logic\parser\EditEventCommandParser.java
 ``` java
 /**

@@ -59,7 +59,6 @@ public class ArgumentMultimap {
         return getValue(new Prefix("")).orElse("");
     }
 
-    //@@author Adoby7
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
