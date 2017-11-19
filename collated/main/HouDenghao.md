@@ -1,5 +1,5 @@
 # HouDenghao
-###### \java\seedu\address\logic\commands\FindEventCommand.java
+###### /java/seedu/address/logic/commands/FindEventCommand.java
 ``` java
 /**
  * Finds and lists all events in event list whose name contains any of the argument keywords.
@@ -34,7 +34,7 @@ public class FindEventCommand extends Command {
     }
 }
 ```
-###### \java\seedu\address\logic\commands\ListEventCommand.java
+###### /java/seedu/address/logic/commands/ListEventCommand.java
 ``` java
 /**
  * Lists all events in the event list to the user.
@@ -52,7 +52,7 @@ public class ListEventCommand extends Command {
     }
 }
 ```
-###### \java\seedu\address\logic\commands\ShowParticipantsCommand.java
+###### /java/seedu/address/logic/commands/ShowParticipantsCommand.java
 ``` java
 /**
  * Shows all the participants of an event.
@@ -67,7 +67,7 @@ public class ShowParticipantsCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SHOW_PARTICIPANTS_SUCCESS = "Show all the participants of %1$s";
+    public static final String MESSAGE_SHOW_PARTICIPANTS_SUCCESS = "Show all the participants of \"%1$s\"";
 
     private final Index targetIndex;
     private ReadOnlyEvent eventToShow;
@@ -105,38 +105,55 @@ public class ShowParticipantsCommand extends Command {
 
 }
 ```
-###### \java\seedu\address\logic\commands\SortCommand.java
+###### /java/seedu/address/logic/commands/SortCommand.java
 ``` java
 /**
- * Sorts all persons in the address book to the user.
+ * Sorts all persons in the address book for the user.
  */
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all persons and events";
+    public static final String MESSAGE_SUCCESS = "Sorted all persons";
 
     @Override
     public CommandResult execute() {
         model.sortPersons();
+        return new CommandResult(MESSAGE_SUCCESS);
+    }
+}
+```
+###### /java/seedu/address/logic/commands/SortEventCommand.java
+``` java
+/**
+ * Sorts all events in the address book for the user.
+ */
+public class SortEventCommand extends Command {
+
+    public static final String COMMAND_WORD = "sortE";
+
+    public static final String MESSAGE_SUCCESS = "Sorted all events";
+
+    @Override
+    public CommandResult execute() {
         model.sortEvents();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
 ```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
+###### /java/seedu/address/logic/parser/AddressBookParser.java
 ``` java
         case ShowParticipantsCommand.COMMAND_WORD:
             return new ShowParticipantsCommandParser().parse(arguments);
 
 ```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
+###### /java/seedu/address/logic/parser/AddressBookParser.java
 ``` java
         case FindEventCommand.COMMAND_WORD:
             return new FindEventCommandParser().parse(arguments);
 
 ```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
+###### /java/seedu/address/logic/parser/AddressBookParser.java
 ``` java
         case ListEventCommand.COMMAND_WORD:
             return new ListEventCommand();
@@ -144,8 +161,11 @@ public class SortCommand extends Command {
         case SortCommand.COMMAND_WORD:
             return new SortCommand();
 
+        case SortEventCommand.COMMAND_WORD:
+            return new SortEventCommand();
+
 ```
-###### \java\seedu\address\logic\parser\FindEventCommandParser.java
+###### /java/seedu/address/logic/parser/FindEventCommandParser.java
 ``` java
 /**
  * Parses input arguments and creates a new FindEventCommand object
@@ -171,7 +191,7 @@ public class FindEventCommandParser implements Parser<FindEventCommand> {
 
 }
 ```
-###### \java\seedu\address\logic\parser\ShowParticipantsCommandParser.java
+###### /java/seedu/address/logic/parser/ShowParticipantsCommandParser.java
 ``` java
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -195,7 +215,7 @@ public class ShowParticipantsCommandParser implements Parser<ShowParticipantsCom
 
 }
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
     /**
      * Sorts the person list.
@@ -207,7 +227,7 @@ public class ShowParticipantsCommandParser implements Parser<ShowParticipantsCom
     //// person-level operations
 
 ```
-###### \java\seedu\address\model\event\EventNameContainsKeywordsPredicate.java
+###### /java/seedu/address/model/event/EventNameContainsKeywordsPredicate.java
 ``` java
 /**
  * Tests that a {@code ReadOnlyEvent}'s {@code Name} matches any of the keywords given.
@@ -234,7 +254,7 @@ public class EventNameContainsKeywordsPredicate implements Predicate<ReadOnlyEve
 
 }
 ```
-###### \java\seedu\address\model\EventList.java
+###### /java/seedu/address/model/EventList.java
 ``` java
     /**
      * Sorts the event list.
@@ -246,19 +266,19 @@ public class EventNameContainsKeywordsPredicate implements Predicate<ReadOnlyEve
     //// util methods
 
 ```
-###### \java\seedu\address\model\Model.java
+###### /java/seedu/address/model/Model.java
 ``` java
     /** Sorts the person list */
     void sortPersons();
 
 ```
-###### \java\seedu\address\model\Model.java
+###### /java/seedu/address/model/Model.java
 ``` java
     /** Sorts the event list */
     void sortEvents();
 
 ```
-###### \java\seedu\address\model\ModelManager.java
+###### /java/seedu/address/model/ModelManager.java
 ``` java
     @Override
     public synchronized void sortPersons() {
@@ -267,7 +287,7 @@ public class EventNameContainsKeywordsPredicate implements Predicate<ReadOnlyEve
     }
 
 ```
-###### \java\seedu\address\model\ModelManager.java
+###### /java/seedu/address/model/ModelManager.java
 ``` java
     @Override
     public synchronized void sortEvents() {
@@ -276,7 +296,7 @@ public class EventNameContainsKeywordsPredicate implements Predicate<ReadOnlyEve
     }
 
 ```
-###### \java\seedu\address\model\person\PersonJoinsEventsPredicate.java
+###### /java/seedu/address/model/person/PersonJoinsEventsPredicate.java
 ``` java
 /**
  * Tests that a {@code ReadOnlyPerson}'s {@code Participation} matches the event given.
@@ -309,10 +329,10 @@ public class PersonJoinsEventsPredicate implements Predicate<ReadOnlyPerson> {
     }
 }
 ```
-###### \java\seedu\address\ui\EventCard.java
+###### /java/seedu/address/ui/EventCard.java
 ``` java
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Event}.
  */
 public class EventCard extends UiPart<Region> {
 
@@ -349,7 +369,7 @@ public class EventCard extends UiPart<Region> {
     }
 
     /**
-     * Binds the individual UI elements to observe their respective {@code Person} properties
+     * Binds the individual UI elements to observe their respective {@code Event} properties
      * so that they will be notified of any changes.
      */
     private void bindListeners(ReadOnlyEvent event) {
@@ -383,10 +403,10 @@ public class EventCard extends UiPart<Region> {
     }
 }
 ```
-###### \java\seedu\address\ui\EventListPanel.java
+###### /java/seedu/address/ui/EventListPanel.java
 ``` java
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of events.
  */
 public class EventListPanel extends UiPart<Region> {
     private static final String FXML = "EventListPanel.fxml";
@@ -423,7 +443,7 @@ public class EventListPanel extends UiPart<Region> {
     }
 
     /**
-     * Scrolls to the {@code PersonCard} at the {@code index} and selects it.
+     * Scrolls to the {@code EventCard} at the {@code index} and selects it.
      */
     private void scrollTo(int index) {
         Platform.runLater(() -> {
@@ -439,7 +459,7 @@ public class EventListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code EventCard}.
      */
     class EventListViewCell extends ListCell<EventCard> {
 
@@ -458,7 +478,7 @@ public class EventListPanel extends UiPart<Region> {
 
 }
 ```
-###### \java\seedu\address\ui\InformationBoard.java
+###### /java/seedu/address/ui/InformationBoard.java
 ``` java
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -493,17 +513,17 @@ public class InformationBoard extends UiPart<Region> {
 
 }
 ```
-###### \java\seedu\address\ui\MainWindow.java
+###### /java/seedu/address/ui/MainWindow.java
 ``` java
         InformationBoard informationBoard = new InformationBoard();
 
 ```
-###### \java\seedu\address\ui\MainWindow.java
+###### /java/seedu/address/ui/MainWindow.java
 ``` java
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
 
 ```
-###### \resources\view\DarkTheme.css
+###### /resources/view/DarkTheme.css
 ``` css
 .text-area {
     -fx-background-color: transparent;
@@ -530,7 +550,7 @@ public class InformationBoard extends UiPart<Region> {
 }
 
 ```
-###### \resources\view\DarkTheme.css
+###### /resources/view/DarkTheme.css
 ``` css
 .list-view {
     -fx-background-insets: 0;
@@ -550,7 +570,7 @@ public class InformationBoard extends UiPart<Region> {
 }
 
 ```
-###### \resources\view\EventListCard.fxml
+###### /resources/view/EventListCard.fxml
 ``` fxml
 
 <HBox id="cardPane" fx:id="cardPane" prefHeight="102.0" prefWidth="200.0" style="-fx-background-color: #66B2F6; -fx-background-radius: 18px; -fx-border-color: white; -fx-border-radius: 18px; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
@@ -608,7 +628,7 @@ public class InformationBoard extends UiPart<Region> {
   </GridPane>
 </HBox>
 ```
-###### \resources\view\EventListPanel.fxml
+###### /resources/view/EventListPanel.fxml
 ``` fxml
 
 <VBox style="-fx-background-color: #99CCFF; -fx-background-radius: 18;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
@@ -622,7 +642,7 @@ public class InformationBoard extends UiPart<Region> {
   <ListView fx:id="eventListView" style="-fx-background-color: #99CCFF; -fx-background-radius: 18px;" VBox.vgrow="ALWAYS" />
 </VBox>
 ```
-###### \resources\view\InformationBoard.fxml
+###### /resources/view/InformationBoard.fxml
 ``` fxml
 <StackPane fx:id="placeHolder" prefHeight="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <VBox style="-fx-background-color: lightgreen; -fx-background-radius: 18px; -fx-border-radius: 18px;">
@@ -636,7 +656,7 @@ public class InformationBoard extends UiPart<Region> {
    </VBox>
 </StackPane>
 ```
-###### \resources\view\PersonListCard.fxml
+###### /resources/view/PersonListCard.fxml
 ``` fxml
 
 <HBox id="cardPane" fx:id="cardPane" style="-fx-background-color: #FF5A5A; -fx-background-radius: 18px; -fx-border-color: white; -fx-border-radius: 18px; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
@@ -704,7 +724,7 @@ public class InformationBoard extends UiPart<Region> {
                    </children>
                 </VBox>
 ```
-###### \resources\view\PersonListCard.fxml
+###### /resources/view/PersonListCard.fxml
 ``` fxml
                </children>
             </HBox>
@@ -716,7 +736,7 @@ public class InformationBoard extends UiPart<Region> {
    </children>
 </HBox>
 ```
-###### \resources\view\PersonListPanel.fxml
+###### /resources/view/PersonListPanel.fxml
 ``` fxml
 <VBox style="-fx-background-color: #FF7676; -fx-background-radius: 18px;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <Label fx:id="title" contentDisplay="CENTER" text="\$title" style="-fx-text-fill: white; -fx-font-size: 18">
